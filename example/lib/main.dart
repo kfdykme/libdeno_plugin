@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:libdeno/libdeno.dart';
+import 'package:libdeno_plugin/libdeno_plugin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,8 +26,9 @@ class _MyAppState extends State<MyApp> {
     initPlatformState();
     lib.load();
     // this.lib.libMain("deno run -A ${runableJsPath} --port=${port}");
-    lib.run(
-        "deno run -A ${Libdeno.GetPath() + "\\" + "denkui.bundle.js"} --port=${8082}");
+    // lib.run(
+    //     "deno run -A ${Libdeno.GetPath() + "\\" + "denkui.bundle.js"} --port=${8082}");
+    lib.run('deno help ');
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.

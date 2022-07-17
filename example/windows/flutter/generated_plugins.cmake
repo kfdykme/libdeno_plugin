@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  libdeno
+  libdeno_plugin
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)
