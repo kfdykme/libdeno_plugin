@@ -32,20 +32,30 @@ int load_libdeno_by_path(const char* path) {
     return 0;
 }
 
+std::thread* lib_deno_thread;
+
+bool has_run_deno_thread = false;
+
 int lib_main_libdeno(const char* cmd) {
-    printf("\n%s\n\n", cmd);
-    int8_t *cmd_i_p = new int8_t[sizeof(cmd) + 1];
-    for (int x = 0; x < sizeof(cmd) +1; x++)
+    if (has_run_deno_thread) {
+        return -100;
+    } 
+
+    has_run_deno_thread = true;
+    printf("cmd: \n%s\n\n", cmd);
+    std::string cmd_s = std::string((char*)cmd);
+    int len = cmd_s.length() + 1;
+    int8_t *cmd_i_p = new int8_t[len];
+    for (int x = 0; x < len; x++)
     {
         cmd_i_p[x] = (int8_t)cmd[x];
     }
     // memcpy(cmd_i_p, (const char *)cmd.c_str(), cmd.length());
-    cmd_i_p[sizeof(cmd) +1] = (int8_t)0;
+    cmd_i_p[len] = (int8_t)0;
     // libmain_(cmd_i_p, 0);
-
-    std::cout<< "lib_main_libdeno" << std::endl;
-    auto lib_thread_ = new std::thread(libmain_, cmd_i_p, 0);
-    lib_thread_->detach();
+    // printf("%d %d %d", sizeof(cmd)+1, sizeof(cmd_i_p) +1, cmd_s.length());
+    lib_deno_thread = new std::thread(libmain_, cmd_i_p, 0);
+    lib_deno_thread->detach();
     
     return 0;   
 }

@@ -44,8 +44,12 @@ public class LibdenoPlugin: NSObject, FlutterPlugin {
       print(res2)
       result("macOS " + ProcessInfo.processInfo.operatingSystemVersionString)
     case "run":
-      let cmd = getString(argva: argv, key: "cmd")
-      lib_main_libdeno(cmd)
+
+      let executablePath = Bundle.main.privateFrameworksPath!
+      let indexTsPath = "deno run " + executablePath + "/libdeno_plugin.framework/Resources/index.ts"
+
+      // let cmd = getString(argva: argv, key: "cmd")
+      lib_main_libdeno(indexTsPath)
     default:
       result(FlutterMethodNotImplemented)
     }

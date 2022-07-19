@@ -24,6 +24,7 @@ A new flutter plugin project.
   s.platform = :osx, '10.11'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
+  s.resource = 'index.ts'
   s.xcconfig = { 
     'OTHER_LDFLAGS' => '-lc++',
     'USER_HEADER_SEARCH_PATHS' => '"${PROJECT_DIR}"/../Flutter/ephemeral/.symlinks/plugins/libdeno_plugin/macos/Classes/'#, '"${PROJECT_DIR}"/../Flutter/ephemeral/.symlinks/plugins/libdeno_plugin/macos/deno_c_library/include/',
