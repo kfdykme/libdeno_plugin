@@ -1,4 +1,4 @@
-#include "include/libdeno/libdeno_plugin.h"
+#include "include/libdeno_plugin/libdeno_plugin.h"
 
 // This must be included before many other Windows headers.
 #include <windows.h>
