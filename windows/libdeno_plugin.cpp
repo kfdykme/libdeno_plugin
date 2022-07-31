@@ -70,9 +70,10 @@ namespace
   void LibdenoPlugin::RegisterWithRegistrar(
       flutter::PluginRegistrarWindows *registrar)
   {
+    std::cout << "LibdenoPlugin::RegisterWithRegistrar" << std::endl;
     auto channel =
         std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
-            registrar->messenger(), "libdeno",
+            registrar->messenger(), "libdeno_plugin",
             &flutter::StandardMethodCodec::GetInstance());
 
     auto plugin = std::make_unique<LibdenoPlugin>();

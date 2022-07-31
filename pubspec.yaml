@@ -25,7 +25,6 @@ flutter:
     platforms:
       windows:
         pluginClass: LibdenoPlugin
-        default_package: libdeno_plugin
       macos:
         pluginClass: LibdenoPlugin 
         
