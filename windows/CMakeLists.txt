@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.14)
-set(PROJECT_NAME "libdeno")
+set(PROJECT_NAME "libdeno_plugin_plugin")
 project(${PROJECT_NAME} LANGUAGES CXX)
 
 # This value is used when generating builds using this plugin, so it must
 # not be changed
-set(PLUGIN_NAME "libdeno_plugin")
+set(PLUGIN_NAME "libdeno_plugin_plugin")
 
 add_library(${PLUGIN_NAME} SHARED
   "libdeno_plugin.cpp"
