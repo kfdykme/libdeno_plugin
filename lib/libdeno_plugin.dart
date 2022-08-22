@@ -8,8 +8,21 @@ const kMethodChannelName = "libdeno_plugin";
 
 class Libdeno {
   late MethodChannel mMethodChannel;
+
+  Function ?onDataCallback;
   Libdeno() {
     mMethodChannel = const MethodChannel(kMethodChannelName);
+
+    mMethodChannel.setMethodCallHandler((call) {
+      if (onDataCallback != null) {
+        onDataCallback!(call.arguments as String);
+      }
+      return Future.value(0);
+    });
+  }
+
+  void onData(Function f) {
+    onDataCallback = f;
   }
   static String GetPath() {
     if (Platform.isMacOS) {
@@ -28,6 +41,12 @@ class Libdeno {
     mMethodChannel.invokeMethod("loadLibrary", <String, dynamic>{
       "path": Libdeno.GetPath() + "\\libdeno.dll"
     }).then((value) => {print(value)});
+  }
+
+  send(String msg) {
+    mMethodChannel.invokeMethod("send", <String, dynamic>{
+      "msg":msg
+    });
   }
 
   run(String cmd) {

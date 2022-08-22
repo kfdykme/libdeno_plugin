@@ -13,6 +13,12 @@ int test_libdeno_version(int v);
 int load_libdeno_by_path(const char* path);
 
 int lib_main_libdeno(const char* path);
+
+void send_ls_msg (const char* msg);
+
+typedef void(*ls_message_callback_t)(const char *);
+void set_ls_message_callback(ls_message_callback_t);
+
 #ifdef __cplusplus
 }
 #endif

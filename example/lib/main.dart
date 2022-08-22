@@ -20,15 +20,19 @@ class _MyAppState extends State<MyApp> {
 
   var lib = Libdeno();
 
+  String receiveMsg = "click me";
   @override
   void initState() {
     super.initState();
     initPlatformState();
     lib.load();
-    // this.lib.libMain("deno run -A ${runableJsPath} --port=${port}");
-    // lib.run(
-    //     "deno run -A ${Libdeno.GetPath() + "\\" + "denkui.bundle.js"} --port=${8082}");
-    lib.run('deno help ');
+    lib.run('deno run -A ${"/Users/chenxiaofang/Library/Containers/com.example.libdenoPluginExample/Data/index.js"}');
+
+    lib.onData((msg) {
+      setState(() {
+        receiveMsg = msg;
+      });
+    });
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -60,7 +64,9 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on222323223: $_platformVersion\n'),
+          child: FlatButton(onPressed: () {
+            lib.send( new DateTime.now().microsecond.toString());
+          }, child: Text(receiveMsg)),
         ),
       ),
     );

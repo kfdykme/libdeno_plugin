@@ -1,12 +1,30 @@
 import Cocoa
 import FlutterMacOS
 
+
+
 public class LibdenoPlugin: NSObject, FlutterPlugin {
+
+  static func onReceive(message: String ) {
+    LibdenoPlugin.channel?.invokeMethod("onReceive", arguments:message);
+  }
+
+  static var channel:FlutterMethodChannel? = nil
+
+
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "libdeno_plugin", binaryMessenger: registrar.messenger)
     let instance = LibdenoPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
     // test()
+
+    LibdenoPlugin.channel = channel
+    set_ls_message_callback({
+      if let ptr = $0 {
+          let str = String(cString: ptr)
+          LibdenoPlugin.onReceive(message: str)
+      }
+    })
   }
 
   func getInt(argva: Any, key: String) -> Int {
@@ -50,6 +68,9 @@ public class LibdenoPlugin: NSObject, FlutterPlugin {
 
       // let cmd = getString(argva: argv, key: "cmd")
       lib_main_libdeno(cmd)
+    case "send":
+      let msg = getString(argva: argv, key: "msg")
+      send_ls_msg(msg);
     default:
       result(FlutterMethodNotImplemented)
     }
