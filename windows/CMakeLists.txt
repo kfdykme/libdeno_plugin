@@ -18,7 +18,7 @@ target_include_directories(${PLUGIN_NAME} INTERFACE
 target_link_libraries(${PLUGIN_NAME} PRIVATE flutter flutter_wrapper_plugin)
 
 # List of absolute paths to libraries that should be bundled with the plugin
-set(libdeno_bundled_libraries
+set(libdeno_plugin_bundled_libraries
   "${CMAKE_CURRENT_SOURCE_DIR}/../library/libdeno.dll"
   PARENT_SCOPE
 )
