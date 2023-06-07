@@ -1,0 +1,2 @@
+macos/arm.zip filter=lfs diff=lfs merge=lfs -text
+macos/x86.zip filter=lfs diff=lfs merge=lfs -text
