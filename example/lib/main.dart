@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: FlatButton(onPressed: () {
+          child: MaterialButton(onPressed: () {
             lib.send( new DateTime.now().microsecond.toString());
           }, child: Text(receiveMsg)),
         ),

@@ -30,3 +30,4 @@ build/
 
 macos/arm
 macos/x86
+macos/liblibdeno.dylib
